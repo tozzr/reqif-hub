@@ -1,20 +1,14 @@
 package com.tozzr.reqif;
 
-class Header {
+class Header extends ReqIFElement {
 
-	private ReqIFHeader reqIFHeader; 
-	
 	public Header() {
-		reqIFHeader = new ReqIFHeader();
+		super("THE-HEADER", "");
+		addElement("reqIFHeader", new ReqIFHeader());
 	}
 	
 	public ReqIFHeader getReqIFHeader() {
-		return reqIFHeader;
+		return (ReqIFHeader) getElement("reqIFHeader");
 	}
 
-	@Override
-	public String toString() {
-		return "<THE-HEADER>" + reqIFHeader.toString() + "</THE-HEADER>";
-	}
-	
 }

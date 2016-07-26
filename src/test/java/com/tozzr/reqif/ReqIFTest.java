@@ -11,7 +11,10 @@ public class ReqIFTest {
 	public void testToString() throws Exception {
 		ReqIF reqIF = new ReqIF();
 		String expected = 
-			"<REQ-IF>"
+			"<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\"\n\t"
+		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t"
+		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\"\n\t"
+		  + "xml:lang=\"en\">\n\t"
 		  + reqIF.getHeader().toString()
 		  + reqIF.getCoreContent().toString()
 		  + "</REQ-IF>";

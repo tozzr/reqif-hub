@@ -8,8 +8,12 @@ import org.junit.Test;
 public class ReqIFWriterTest {
 
 	@Test
-	public void test() {
+	public void wrappRootElementInXml() {
 		ReqIFWriter writer = new ReqIFWriter();
-		assertThat(writer.write(new ReqIF()), equalTo("<REQ-IF></REQ-IF>"));
+		ReqIF reqIF = new ReqIF();
+		String expected = 
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+		  + reqIF.toString();
+		assertThat(writer.write(reqIF), equalTo(expected));
 	}
 }

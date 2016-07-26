@@ -1,6 +1,6 @@
 package com.tozzr.reqif;
 
-class Comment extends SimplePayloadElement {
+class Comment extends ReqIFElement {
 
 	public Comment() {
 		this("");

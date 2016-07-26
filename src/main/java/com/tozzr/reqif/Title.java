@@ -1,6 +1,6 @@
 package com.tozzr.reqif;
 
-class Title extends SimplePayloadElement {
+class Title extends ReqIFElement {
 	
 	public Title() {
 		this("");

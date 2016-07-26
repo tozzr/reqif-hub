@@ -1,10 +1,9 @@
 package com.tozzr.reqif;
 
-class CoreContent {
+class CoreContent extends ReqIFElement {
 
-	@Override
-	public String toString() {
-		return "<CORE-CONTENT></CORE-CONTENT>";
+	protected CoreContent() {
+		super("CONTENT", "");
 	}
-	
+
 }

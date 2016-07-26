@@ -1,11 +1,12 @@
 package com.tozzr.reqif;
 
-class ReqIFHeader {
+class ReqIFHeader extends ReqIFElement {
 
 	private Comment comment;
 	private Title title;
 	
 	public ReqIFHeader() {
+		super("REQ-IF-HEADER", "");
 		comment = new Comment();
 		title = new Title();
 	}
