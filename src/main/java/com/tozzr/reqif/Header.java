@@ -8,13 +8,13 @@ class Header {
 		reqIFHeader = new ReqIFHeader();
 	}
 	
-	@Override
-	public String toString() {
-		return "<THE-HEADER></THE-HEADER>";
-	}
-
 	public ReqIFHeader getReqIFHeader() {
 		return reqIFHeader;
+	}
+
+	@Override
+	public String toString() {
+		return "<THE-HEADER>" + reqIFHeader.toString() + "</THE-HEADER>";
 	}
 	
 }

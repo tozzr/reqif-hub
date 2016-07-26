@@ -17,5 +17,10 @@ class ReqIF {
 	public CoreContent getCoreContent() {
 		return coreContent;
 	}
+
+	@Override
+	public String toString() {
+		return "<REQ-IF>" + header + coreContent + "</REQ-IF>";
+	}
 	
 }
