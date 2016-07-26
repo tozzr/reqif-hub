@@ -3,7 +3,7 @@ package com.tozzr.reqif;
 class Header extends ReqIFElement {
 
 	public Header() {
-		super("THE-HEADER", "");
+		super("THE-HEADER");
 		addElement("reqIFHeader", new ReqIFHeader());
 	}
 	

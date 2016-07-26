@@ -6,7 +6,7 @@ class ReqIFHeader extends ReqIFElement {
 	private Title title;
 	
 	public ReqIFHeader() {
-		super("REQ-IF-HEADER", "");
+		super("REQ-IF-HEADER");
 		comment = new Comment();
 		title = new Title();
 	}

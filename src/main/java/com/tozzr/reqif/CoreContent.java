@@ -3,7 +3,8 @@ package com.tozzr.reqif;
 class CoreContent extends ReqIFElement {
 
 	protected CoreContent() {
-		super("CONTENT", "");
+		super("CORE-CONTENT");
+		addElement("reqIFContent", new ReqIFContent());
 	}
 
 }

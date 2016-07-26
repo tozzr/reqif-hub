@@ -3,7 +3,7 @@ package com.tozzr.reqif;
 class ReqIF extends ReqIFElement {
 
 	public ReqIF() {
-		super("REQ-IF", "");
+		super("REQ-IF");
 		addElement("header", new Header());
 		addElement("coreContent", new CoreContent());
 	}

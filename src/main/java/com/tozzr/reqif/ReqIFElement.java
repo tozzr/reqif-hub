@@ -9,10 +9,14 @@ public abstract class ReqIFElement {
 	private String payload;
 	private Map<String, ReqIFElement> elements;
 	
+	protected ReqIFElement(final String name) {
+		this(name, "");
+	}
+	
 	protected ReqIFElement(final String name, final String payload) {
 		this.name = name;
-		this.payload = payload;
 		this.elements = new HashMap<String, ReqIFElement>();
+		this.payload = payload;
 	}
 	
 	protected void addElement(String key, ReqIFElement element) {
