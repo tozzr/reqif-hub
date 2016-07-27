@@ -8,16 +8,16 @@ import org.junit.Test;
 public class DataTypeDefinitionEnumerationTest {
 
 	@Test
-	public void testToString() throws Exception {
+	public void testToXml() throws Exception {
 		DataTypeDefinitionEnumeration sut = new DataTypeDefinitionEnumeration("myId", "last-change");
 		String expected = 
 			"<DATATYPE-DEFINITION-ENUMERATION "
 		  + "IDENTIFIER=\"myId\" "
 		  + "LAST-CHANGE=\"last-change\""
-		  + ">"
-		  + new SpecifiedValues()
-		  + "</DATATYPE-DEFINITION-ENUMERATION>";
-		assertThat(sut.toString(), equalTo(expected));
+		  + ">\n"
+		  + new SpecifiedValues().toXml(2)
+		  + "</DATATYPE-DEFINITION-ENUMERATION>\n";
+		assertThat(sut.toXml(0), equalTo(expected));
 	}
 	
 }

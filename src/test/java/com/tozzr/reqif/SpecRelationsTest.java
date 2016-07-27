@@ -8,8 +8,8 @@ import org.junit.Test;
 public class SpecRelationsTest {
 
 	@Test
-	public void testToString() throws Exception {
-		assertThat(new SpecRelations().toString(), equalTo("<SPEC-RELATIONS></SPEC-RELATIONS>"));
+	public void testToXml() throws Exception {
+		assertThat(new SpecRelations().toXml(1), equalTo(" <SPEC-RELATIONS>\n </SPEC-RELATIONS>\n"));
 	}
 	
 }

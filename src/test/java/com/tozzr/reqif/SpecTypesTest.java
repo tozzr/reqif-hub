@@ -8,8 +8,8 @@ import org.junit.Test;
 public class SpecTypesTest {
 
 	@Test
-	public void testToString() throws Exception {
-		assertThat(new SpecTypes().toString(), equalTo("<SPEC-TYPES></SPEC-TYPES>"));
+	public void testToXml() throws Exception {
+		assertThat(new SpecTypes().toXml(0), equalTo("<SPEC-TYPES>\n</SPEC-TYPES>\n"));
 	}
 	
 }

@@ -4,38 +4,32 @@ import java.util.Date;
 
 class ReqIFHeader extends ReqIFElement {
 
-	private String comment;
-	private Date creationTime;
-	private String identifier;
-	private String title;
+	public String comment = "";
+	public Date creationTime = new Date();
+	public String identifier = "";
+	public String repositoryId = "";
+	public String reqIFToolId = "";
+	public String reqIFVersion = "";
+	public String sourceToolId = "";
+	public String title = "";
 	
 	public ReqIFHeader(String identifier) {
 		super("REQ-IF-HEADER");
-		comment = "";
-		creationTime = new Date();
 		this.identifier = identifier;
-		title = "";
 	}
 	
-	@Override
-	public String toString() {
+	public String toXml(int ident) {
 		return 
-			"<REQ-IF-HEADER IDENTIFIER=\"" + identifier + "\">"
-		  + "<COMMENT>" + comment + "</COMMENT>"
-		  + "<CREATION-TIME>" + creationTime + "</CREATION-TIME>"
-		  + "<TITLE>" + title + "</TITLE>"
-		  + "</REQ-IF-HEADER>";
+			"  <THE-HEADER>\n"
+			  + "    <REQ-IF-HEADER IDENTIFIER=\"myId\">\n"
+			  + "      <COMMENT>" + comment + "</COMMENT>\n"
+			  + "      <CREATION-TIME>" + creationTime + "</CREATION-TIME>\n"
+			  + "      <REQ-IF-TOOL-ID>" + reqIFToolId + "</REQ-IF-TOOL-ID>\n"
+			  + "      <REQ-IF-VERSION>" + reqIFVersion + "</REQ-IF-VERSION>\n"
+			  + "      <SOURCE-TOOL-ID>" + sourceToolId  + "</SOURCE-TOOL-ID>\n"
+			  + "      <TITLE>" + title + "</TITLE>\n"
+			  + "    </REQ-IF-HEADER>\n"
+			  + "  </THE-HEADER>\n";
 	}
 
-	public String getComment() {
-		return comment;
-	}
-
-	public Date getCreationTime() {
-		return creationTime;
-	}
-
-	public String getTitle() {
-		return title;
-	}
 }

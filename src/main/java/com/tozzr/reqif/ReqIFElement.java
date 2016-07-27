@@ -35,14 +35,25 @@ public abstract class ReqIFElement {
 		this.attributes.put(name, value);
 	}
 	
-	@Override
-	public String toString() {
-		String elemStr = "";
-		for (ReqIFElement e : elements)
-			elemStr += e;
+	public String toXml(int ident) {
+		String identStr = "";
+		for (int i=0; i < ident; i++)
+			identStr += " ";
 		String attrStr = "";
 		for (String n : attributes.keySet())
 			attrStr += String.format(" %s=\"%s\"", n, attributes.get(n));
-		return String.format("<%s%s>%s%s</%s>", name, attrStr, payload, elemStr, name);
+		String elemStr = "";
+		for (ReqIFElement e : elements)
+			elemStr += e.toXml(ident+2);
+		return String.format(
+			"%s<%s%s>\n%s%s%s</%s>\n", 
+			identStr, 
+			name, 
+			attrStr, 
+			payload,
+			elemStr,
+			identStr,
+			name
+		);
 	}
 }

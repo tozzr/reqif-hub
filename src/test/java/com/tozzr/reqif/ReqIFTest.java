@@ -8,26 +8,26 @@ import org.junit.Test;
 public class ReqIFTest {
 
 	@Test
-	public void testToString() throws Exception {
+	public void testToXml() throws Exception {
 		ReqIF reqIF = new ReqIF("myId");
 		String expected = 
-			"<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\"\n\t"
-		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t"
-		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\"\n\t"
-		  + "xml:lang=\"en\">\n\t"
-		  + reqIF.getHeader().toString()
-		  + reqIF.getCoreContent().toString()
+			"<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
+		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
+		  + "xml:lang=\"en\">\n"
+		  + reqIF.getHeader().toXml(2)
+		  + reqIF.getContent().toXml(2)
 		  + "</REQ-IF>";
-		assertThat(reqIF.toString(), equalTo(expected));
+		assertEquals(expected, reqIF.toXml(0));
 	}
 	
 	@Test
 	public void hasHeader() throws Exception {
-		assertThat(new ReqIF("myId").getHeader().toString(), equalTo(new Header("myId").toString()));
+		assertThat(new ReqIF("myId").getHeader().toXml(1), equalTo(new ReqIFHeader("myId").toXml(1)));
 	}
 	
 	@Test
-	public void hasCoreContent() throws Exception {
-		assertThat(new ReqIF("myId").getCoreContent().toString(), equalTo(new CoreContent().toString()));
+	public void hasContent() throws Exception {
+		assertThat(new ReqIF("myId").getContent().toXml(1), equalTo(new ReqIFContent().toXml(1)));
 	}
 }

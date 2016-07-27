@@ -1,7 +1,6 @@
 package com.tozzr.reqif;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -13,7 +12,8 @@ public class ReqIFWriterTest {
 		ReqIF reqIF = new ReqIF("myId");
 		String expected = 
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-		  + reqIF.toString();
-		assertThat(writer.write(reqIF), equalTo(expected));
+		  + reqIF.toXml();
+		assertEquals(expected, writer.write(reqIF));
+//		System.out.print(writer.write(reqIF));
 	}
 }

@@ -8,22 +8,30 @@ import org.junit.Test;
 public class DataTypesTest {
 
 	@Test
-	public void testToString() throws Exception {
-		assertThat(new DataTypes().toString(), equalTo("<DATATYPES></DATATYPES>"));
+	public void testToXml() throws Exception {
+		assertThat(new DataTypes().toXml(1), equalTo(" <DATATYPES>\n </DATATYPES>\n"));
 	}
 	
 	@Test
 	public void canHaveDataTypeDefinitionString() throws Exception {
 		DataTypes dataTypes = new DataTypes();
 		dataTypes.addElement(new DataTypeDefinitionString("ID", 1000));
-		assertThat(dataTypes.toString(), equalTo("<DATATYPES>" + new DataTypeDefinitionString("ID", 1000) + "</DATATYPES>"));
+		String expected = 
+			"<DATATYPES>\n"
+		  + new DataTypeDefinitionString("ID", 1000).toXml(2)
+		  + "</DATATYPES>\n";
+		assertThat(dataTypes.toXml(0), equalTo(expected));
 	}
 	
 	@Test
 	public void canHaveDataTypeDefinitionEnumeration() throws Exception {
 		DataTypes dataTypes = new DataTypes();
 		dataTypes.addElement(new DataTypeDefinitionEnumeration("ID", "last-change"));
-		assertThat(dataTypes.toString(), equalTo("<DATATYPES>" + new DataTypeDefinitionEnumeration("ID", "last-change") + "</DATATYPES>"));
+		String expected = 
+			"<DATATYPES>\n"
+		  + new DataTypeDefinitionEnumeration("ID", "last-change").toXml(2)
+		  + "</DATATYPES>\n";
+		assertThat(dataTypes.toXml(0), equalTo(expected));
 	}
 	
 }

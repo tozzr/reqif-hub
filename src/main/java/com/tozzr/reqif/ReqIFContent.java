@@ -11,4 +11,11 @@ class ReqIFContent extends ReqIFElement {
 		addElement(new Specifications());
 	}
 	
+	@Override
+	public String toXml(int ident) {
+		String identStr = "";
+		for (int i=0; i<ident; i++)
+			identStr += " ";
+		return String.format("%s<CORE-CONTENT>\n%s%s</CORE-CONTENT>\n", identStr, super.toXml(ident+2), identStr);
+	}
 }

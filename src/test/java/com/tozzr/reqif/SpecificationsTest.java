@@ -8,8 +8,8 @@ import org.junit.Test;
 public class SpecificationsTest {
 
 	@Test
-	public void testToString() throws Exception {
-		assertThat(new Specifications().toString(), equalTo("<SPECIFICATIONS></SPECIFICATIONS>"));
+	public void testToXml() throws Exception {
+		assertThat(new Specifications().toXml(0), equalTo("<SPECIFICATIONS>\n</SPECIFICATIONS>\n"));
 	}
 	
 }
