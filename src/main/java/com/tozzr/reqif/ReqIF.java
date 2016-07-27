@@ -2,18 +2,18 @@ package com.tozzr.reqif;
 
 class ReqIF extends ReqIFElement {
 
-	public ReqIF() {
+	public ReqIF(String identifier) {
 		super("REQ-IF");
-		addElement("header", new Header());
-		addElement("coreContent", new CoreContent());
+		addElement(new Header(identifier));
+		addElement(new CoreContent());
 	}
 	
 	public Header getHeader() {
-		return (Header) getElement("header");
+		return (Header) getElement(0);
 	}
 	
 	public CoreContent getCoreContent() {
-		return (CoreContent) getElement("coreContent");
+		return (CoreContent) getElement(1);
 	}
 
 	@Override

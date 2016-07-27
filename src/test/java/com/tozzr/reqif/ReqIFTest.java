@@ -9,7 +9,7 @@ public class ReqIFTest {
 
 	@Test
 	public void testToString() throws Exception {
-		ReqIF reqIF = new ReqIF();
+		ReqIF reqIF = new ReqIF("myId");
 		String expected = 
 			"<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\"\n\t"
 		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t"
@@ -23,11 +23,11 @@ public class ReqIFTest {
 	
 	@Test
 	public void hasHeader() throws Exception {
-		assertThat(new ReqIF().getHeader().toString(), equalTo(new Header().toString()));
+		assertThat(new ReqIF("myId").getHeader().toString(), equalTo(new Header("myId").toString()));
 	}
 	
 	@Test
 	public void hasCoreContent() throws Exception {
-		assertThat(new ReqIF().getCoreContent().toString(), equalTo(new CoreContent().toString()));
+		assertThat(new ReqIF("myId").getCoreContent().toString(), equalTo(new CoreContent().toString()));
 	}
 }

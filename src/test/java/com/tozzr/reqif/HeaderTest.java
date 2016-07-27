@@ -9,11 +9,11 @@ public class HeaderTest {
 
 	@Test
 	public void hasReqIFHeader() throws Exception {
-		assertThat(new Header().getReqIFHeader().toString(), equalTo(new ReqIFHeader().toString()));
+		assertThat(new Header("myId").getReqIFHeader().toString(), equalTo(new ReqIFHeader("myId").toString()));
 	}
 
 	@Test
 	public void testToString() throws Exception {
-		assertThat(new Header().toString(), equalTo("<THE-HEADER>" + new Header().getReqIFHeader().toString() + "</THE-HEADER>"));
+		assertThat(new Header("myId").toString(), equalTo("<THE-HEADER>" + new Header("myId").getReqIFHeader().toString() + "</THE-HEADER>"));
 	}
 }

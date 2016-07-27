@@ -9,22 +9,14 @@ public class ReqIFHeaderTest {
 
 	@Test
 	public void testToString() throws Exception {
-		ReqIFHeader reqIFHeader = new ReqIFHeader();
+		ReqIFHeader reqIFHeader = new ReqIFHeader("myId");
 		String expected = 
-			"<REQ-IF-HEADER>"
-		  + reqIFHeader.getComment().toString()
-		  + reqIFHeader.getTitle().toString()
+			"<REQ-IF-HEADER IDENTIFIER=\"myId\">"
+		  + "<COMMENT>" + reqIFHeader.getComment() + "</COMMENT>"
+		  + "<CREATION-TIME>" + reqIFHeader.getCreationTime() + "</CREATION-TIME>"
+		  + "<TITLE>" + reqIFHeader.getTitle() + "</TITLE>"
 		  + "</REQ-IF-HEADER>";
 		assertThat(reqIFHeader.toString(), equalTo(expected));
 	}
 	
-	@Test
-	public void hasComment() throws Exception {
-		assertThat(new ReqIFHeader().getComment().toString(), equalTo(new Comment().toString()));
-	}
-	
-	@Test
-	public void hasTitle() throws Exception {
-		assertThat(new ReqIFHeader().getTitle().toString(), equalTo(new Title().toString()));
-	}
 }

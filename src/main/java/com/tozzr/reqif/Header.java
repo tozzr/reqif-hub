@@ -2,13 +2,13 @@ package com.tozzr.reqif;
 
 class Header extends ReqIFElement {
 
-	public Header() {
+	public Header(String identifier) {
 		super("THE-HEADER");
-		addElement("reqIFHeader", new ReqIFHeader());
+		addElement(new ReqIFHeader(identifier));
 	}
 	
 	public ReqIFHeader getReqIFHeader() {
-		return (ReqIFHeader) getElement("reqIFHeader");
+		return (ReqIFHeader) getElement(0);
 	}
 
 }
