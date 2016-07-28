@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 public abstract class ReqIFElement {
 
 	private String name;
@@ -36,15 +40,11 @@ public abstract class ReqIFElement {
 	}
 	
 	public String toXml(int ident) {
-		String identStr = "";
-		for (int i=0; i < ident; i++)
-			identStr += " ";
+		String identStr = getIdentStr(ident);
 		String attrStr = "";
 		for (String n : attributes.keySet())
 			attrStr += String.format(" %s=\"%s\"", n, attributes.get(n));
-		String elemStr = "";
-		for (ReqIFElement e : elements)
-			elemStr += e.toXml(ident+2);
+		String elemStr = elementsToXml(ident);
 		return String.format(
 			"%s<%s%s>\n%s%s%s</%s>\n", 
 			identStr, 
@@ -57,4 +57,32 @@ public abstract class ReqIFElement {
 		);
 	}
 
+	protected String getIdentStr(int ident) {
+		String identStr = "";
+		for (int i=0; i < ident; i++)
+			identStr += " ";
+		return identStr;
+	}
+	
+	protected String elementsToXml(int ident) {
+		String elemStr = "";
+		for (ReqIFElement e : elements)
+			elemStr += e.toXml(ident+2);
+		return elemStr;
+	}
+
+	public ReqIFElement fromXml(Element element) {
+		NodeList children = element.getChildNodes();
+		for (int i=0; i<children.getLength(); i++) {
+			Node node = children.item(i);
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element e = (Element) node;
+				handleElement(e);
+			}
+		}
+		return this;
+	}
+	
+	abstract protected void handleElement(Element e);
+	
 }

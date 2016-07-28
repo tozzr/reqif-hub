@@ -9,7 +9,7 @@ public class DataTypeDefinitionStringTest {
 
 	@Test
 	public void testToXml() throws Exception {
-		DataTypeDefinitionString sut = new DataTypeDefinitionString("myId", "last-change", 1000);
+		DatatypeDefinitionString sut = new DatatypeDefinitionString("myId", "last-change", 1000);
 		String expected = 
 			"<DATATYPE-DEFINITION-STRING "
 		  + "IDENTIFIER=\"myId\" "

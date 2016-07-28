@@ -1,10 +1,14 @@
 package com.tozzr.reqif;
 
+import org.w3c.dom.Element;
+
 class ReqIFContent extends ReqIFElement {
 
+	public DataTypes dataTypes;
+	
 	protected ReqIFContent() {
 		super("REQ-IF-CONTENT");
-		addElement(new DataTypes());
+		dataTypes = new DataTypes();
 		addElement(new SpecTypes());
 		addElement(new SpecObjects());
 		addElement(new SpecRelations());
@@ -13,9 +17,28 @@ class ReqIFContent extends ReqIFElement {
 	
 	@Override
 	public String toXml(int ident) {
-		String identStr = "";
-		for (int i=0; i<ident; i++)
-			identStr += " ";
-		return String.format("%s<CORE-CONTENT>\n%s%s</CORE-CONTENT>\n", identStr, super.toXml(ident+2), identStr);
+		return String.format(
+			"%s<CORE-CONTENT>\n"
+		  + "%s<REQ-IF-CONTENT>\n"
+		  + "%s"
+		  + "%s"
+		  + "%s</REQ-IF-CONTENT>\n"
+		  + "%s</CORE-CONTENT>\n", 
+			getIdentStr(ident),
+			getIdentStr(ident+2),
+			dataTypes.toXml(ident+4),
+			elementsToXml(ident+2), 
+			getIdentStr(ident+2),
+			getIdentStr(ident)
+		);
 	}
+
+	@Override
+	protected void handleElement(Element e) {
+		if (e.getNodeName().equals("REQ-IF-CONTENT"))
+			fromXml(e);
+		if (e.getNodeName().equals("DATATYPES"))
+			dataTypes.fromXml(e);
+	}
+	
 }

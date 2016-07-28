@@ -15,10 +15,10 @@ public class DataTypesTest {
 	@Test
 	public void canHaveDataTypeDefinitionString() throws Exception {
 		DataTypes dataTypes = new DataTypes();
-		dataTypes.addElement(new DataTypeDefinitionString("ID", 1000));
+		dataTypes.addElement(new DatatypeDefinitionString("ID", 1000));
 		String expected = 
 			"<DATATYPES>\n"
-		  + new DataTypeDefinitionString("ID", 1000).toXml(2)
+		  + new DatatypeDefinitionString("ID", 1000).toXml(2)
 		  + "</DATATYPES>\n";
 		assertThat(dataTypes.toXml(0), equalTo(expected));
 	}

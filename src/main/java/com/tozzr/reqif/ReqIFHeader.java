@@ -6,8 +6,6 @@ import java.util.Date;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 class ReqIFHeader extends ReqIFElement {
 
@@ -39,36 +37,31 @@ class ReqIFHeader extends ReqIFElement {
 			  + "  </THE-HEADER>\n";
 	}
 
-	public ReqIFHeader fromXml(Element element) {
-		element = (Element) element.getChildNodes().item(1);
-		identifier = element.getAttribute("IDENTIFIER");
-		NodeList children = element.getChildNodes();
-		for (int i=0; i<children.getLength(); i++) {
-			Node node = children.item(i);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element e = (Element) node;
-				if (e.getNodeName() == "COMMENT")
-					comment = e.getTextContent();
-				if (e.getNodeName() == "CREATION-TIME") {
-					try {
-						creationTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(e.getTextContent());
-					} catch (DOMException e1) {
-						e1.printStackTrace();
-					} catch (ParseException e1) {
-						e1.printStackTrace();
-					}
-				}
-				if (e.getNodeName() == "REQ-IF-TOOL-ID")
-					reqIFToolId = e.getTextContent();
-				if (e.getNodeName() == "REQ-IF-VERSION")
-					reqIFVersion = e.getTextContent();
-				if (e.getNodeName() == "SOURCE-TOOL-ID")
-					sourceToolId = e.getTextContent();
-				if (e.getNodeName() == "TITLE")
-					title = e.getTextContent();
+	@Override
+	protected void handleElement(Element e) {
+		if (e.getNodeName() == "REQ-IF-HEADER") {
+			identifier = e.getAttribute("IDENTIFIER");
+			fromXml(e);
+		}
+		if (e.getNodeName() == "COMMENT")
+			comment = e.getTextContent();
+		if (e.getNodeName() == "CREATION-TIME") {
+			try {
+				creationTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(e.getTextContent());
+			} catch (DOMException e1) {
+				e1.printStackTrace();
+			} catch (ParseException e1) {
+				e1.printStackTrace();
 			}
 		}
-		return this;
+		if (e.getNodeName() == "REQ-IF-TOOL-ID")
+			reqIFToolId = e.getTextContent();
+		if (e.getNodeName() == "REQ-IF-VERSION")
+			reqIFVersion = e.getTextContent();
+		if (e.getNodeName() == "SOURCE-TOOL-ID")
+			sourceToolId = e.getTextContent();
+		if (e.getNodeName() == "TITLE")
+			title = e.getTextContent();
 	}
 
 }

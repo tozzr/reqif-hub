@@ -8,16 +8,17 @@ public class ReqIFContentTest {
 
 	@Test
 	public void testToXml() throws Exception {
+		ReqIFContent reqIFContent = new ReqIFContent();
 		String expected = 
 			"<CORE-CONTENT>\n"
 		  + "  <REQ-IF-CONTENT>\n" 
-		  + new DataTypes().toXml(4)
+		  + reqIFContent.dataTypes.toXml(4)
 		  + new SpecTypes().toXml(4)
 		  + new SpecObjects().toXml(4)
 		  + new SpecRelations().toXml(4)
 		  + new Specifications().toXml(4)
 		  + "  </REQ-IF-CONTENT>\n"
 		  + "</CORE-CONTENT>\n";
-		assertEquals(expected, new ReqIFContent().toXml(0));
+		assertEquals(expected, reqIFContent.toXml(0));
 	}
 }

@@ -20,7 +20,7 @@ class ReqIFReader {
 		File file = new File(filename);
 		Document doc = builder.parse(file);
 		doc.getDocumentElement().normalize();
-		return new ReqIF("").fromXml(doc.getDocumentElement());
+		return (ReqIF) new ReqIF("").fromXml(doc.getDocumentElement());
 	}
 	
 }
