@@ -51,5 +51,7 @@ public class ReqIFReaderTest {
 	@Test
 	public void read_specObjects() throws Exception {
 		assertThat(reqIF.coreContent.specObjects.get(0).getName(), equalTo("SPEC-OBJECT"));
+		assertThat(reqIF.coreContent.specObjects.get(1).getName(), equalTo("SPEC-OBJECT"));
+		assertThat(reqIF.coreContent.specObjects.get(2).getName(), equalTo("SPEC-OBJECT"));
 	}
 }

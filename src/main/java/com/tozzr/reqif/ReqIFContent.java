@@ -41,14 +41,10 @@ class ReqIFContent extends ReqIFElement {
 
 	@Override
 	protected void handleElement(Element e) {
-		if (e.getNodeName().equals("REQ-IF-CONTENT"))
-			fromXml(e);
-		if (e.getNodeName().equals("DATATYPES"))
-			dataTypes.fromXml(e);
-		if (e.getNodeName().equals("SPEC-TYPES"))
-			specTypes.fromXml(e);
-		if (e.getNodeName().equals("SPEC-OBJECTS"))
-			specObjects.fromXml(e);
+		if (e.getNodeName().equals("REQ-IF-CONTENT")) fromXml(e);
+		if (e.getNodeName().equals("DATATYPES"))      dataTypes.fromXml(e);
+		if (e.getNodeName().equals("SPEC-TYPES"))     specTypes.fromXml(e);
+		if (e.getNodeName().equals("SPEC-OBJECTS"))   specObjects.fromXml(e);
 	}
 	
 }
