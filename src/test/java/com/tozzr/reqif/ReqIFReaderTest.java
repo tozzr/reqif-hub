@@ -31,7 +31,7 @@ public class ReqIFReaderTest {
 	}
 	
 	@Test
-	public void read_datatypes() throws Exception {
+	public void read_dataTypes() throws Exception {
 		assertThat(reqIF.coreContent.dataTypes.get(0).getType(), equalTo("STRING"));
 		assertThat(reqIF.coreContent.dataTypes.get(1).getType(), equalTo("STRING"));
 		assertThat(reqIF.coreContent.dataTypes.get(2).getType(), equalTo("XHTML"));
@@ -39,5 +39,17 @@ public class ReqIFReaderTest {
 		assertThat(reqIF.coreContent.dataTypes.get(4).getType(), equalTo("XHTML"));
 		assertThat(reqIF.coreContent.dataTypes.get(5).getType(), equalTo("XHTML"));
 		assertThat(reqIF.coreContent.dataTypes.get(6).getType(), equalTo("STRING"));
+	}
+	
+	@Test
+	public void read_specTypes() throws Exception {
+		assertThat(reqIF.coreContent.specTypes.get(0).getName(), equalTo("SPEC-OBJECT-TYPE"));
+		assertThat(reqIF.coreContent.specTypes.get(1).getName(), equalTo("SPECIFICATION-TYPE"));
+		assertThat(reqIF.coreContent.specTypes.get(2).getName(), equalTo("SPEC-RELATION-TYPE"));
+	}
+	
+	@Test
+	public void read_specObjects() throws Exception {
+		assertThat(reqIF.coreContent.specObjects.get(0).getName(), equalTo("SPEC-OBJECT"));
 	}
 }

@@ -5,12 +5,14 @@ import org.w3c.dom.Element;
 class ReqIFContent extends ReqIFElement {
 
 	public DataTypes dataTypes;
+	public SpecTypes specTypes;
+	public SpecObjects specObjects;
 	
 	protected ReqIFContent() {
 		super("REQ-IF-CONTENT");
 		dataTypes = new DataTypes();
-		addElement(new SpecTypes());
-		addElement(new SpecObjects());
+		specTypes = new SpecTypes();
+		specObjects = new SpecObjects();
 		addElement(new SpecRelations());
 		addElement(new Specifications());
 	}
@@ -22,11 +24,15 @@ class ReqIFContent extends ReqIFElement {
 		  + "%s<REQ-IF-CONTENT>\n"
 		  + "%s"
 		  + "%s"
+		  + "%s"
+		  + "%s"
 		  + "%s</REQ-IF-CONTENT>\n"
 		  + "%s</CORE-CONTENT>\n", 
 			getIdentStr(ident),
 			getIdentStr(ident+2),
 			dataTypes.toXml(ident+4),
+			specTypes.toXml(ident+4),
+			specObjects.toXml(ident+4),
 			elementsToXml(ident+2), 
 			getIdentStr(ident+2),
 			getIdentStr(ident)
@@ -39,6 +45,10 @@ class ReqIFContent extends ReqIFElement {
 			fromXml(e);
 		if (e.getNodeName().equals("DATATYPES"))
 			dataTypes.fromXml(e);
+		if (e.getNodeName().equals("SPEC-TYPES"))
+			specTypes.fromXml(e);
+		if (e.getNodeName().equals("SPEC-OBJECTS"))
+			specObjects.fromXml(e);
 	}
 	
 }

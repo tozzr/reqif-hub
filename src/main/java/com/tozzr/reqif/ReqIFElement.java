@@ -27,6 +27,10 @@ public abstract class ReqIFElement {
 		this.attributes = new TreeMap<String, String>();
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	protected void addElement(ReqIFElement element) {
 		this.elements.add(element);
 	}
