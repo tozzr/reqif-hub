@@ -44,7 +44,7 @@ public abstract class ReqIFElement {
 	}
 	
 	public String toXml(int ident) {
-		String identStr = getIdentStr(ident);
+		String identStr = getIndentStr(ident);
 		String attrStr = "";
 		for (String n : attributes.keySet())
 			attrStr += String.format(" %s=\"%s\"", n, attributes.get(n));
@@ -61,7 +61,7 @@ public abstract class ReqIFElement {
 		);
 	}
 
-	protected String getIdentStr(int ident) {
+	protected String getIndentStr(int ident) {
 		String identStr = "";
 		for (int i=0; i < ident; i++)
 			identStr += " ";

@@ -31,7 +31,7 @@ public class ReqIFReaderTest {
 	}
 	
 	@Test
-	public void read_dataTypes() throws Exception {
+	public void read_content_dataTypes() throws Exception {
 		assertThat(reqIF.coreContent.dataTypes.get(0).getType(), equalTo("STRING"));
 		assertThat(reqIF.coreContent.dataTypes.get(1).getType(), equalTo("STRING"));
 		assertThat(reqIF.coreContent.dataTypes.get(2).getType(), equalTo("XHTML"));
@@ -42,16 +42,31 @@ public class ReqIFReaderTest {
 	}
 	
 	@Test
-	public void read_specTypes() throws Exception {
+	public void read_content_specTypes() throws Exception {
 		assertThat(reqIF.coreContent.specTypes.get(0).getName(), equalTo("SPEC-OBJECT-TYPE"));
 		assertThat(reqIF.coreContent.specTypes.get(1).getName(), equalTo("SPECIFICATION-TYPE"));
 		assertThat(reqIF.coreContent.specTypes.get(2).getName(), equalTo("SPEC-RELATION-TYPE"));
 	}
 	
 	@Test
-	public void read_specObjects() throws Exception {
+	public void read_content_specObjects() throws Exception {
 		assertThat(reqIF.coreContent.specObjects.get(0).getName(), equalTo("SPEC-OBJECT"));
 		assertThat(reqIF.coreContent.specObjects.get(1).getName(), equalTo("SPEC-OBJECT"));
 		assertThat(reqIF.coreContent.specObjects.get(2).getName(), equalTo("SPEC-OBJECT"));
+	}
+	
+	@Test
+	public void read_content_speRelations() throws Exception {
+		assertThat(reqIF.coreContent.specRelations.get(0).getName(), equalTo("SPEC-RELATION"));
+	}
+	
+	@Test
+	public void read_content_specifications() throws Exception {
+		assertThat(reqIF.coreContent.specifications.get(0).getName(), equalTo("SPECIFICATION"));
+	}
+	
+	@Test
+	public void read_toolExtensions() throws Exception {
+		assertThat(reqIF.toolExtension.get(0).getName(), equalTo("REQ-IF-TOOL-EXTENSION"));
 	}
 }

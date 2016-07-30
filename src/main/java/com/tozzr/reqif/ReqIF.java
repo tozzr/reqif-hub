@@ -7,11 +7,13 @@ class ReqIF extends ReqIFElement {
 	public String lang;
 	public ReqIFHeader theHeader;
 	public ReqIFContent coreContent;
+	public ReqIFToolExtension toolExtension;
 	
 	public ReqIF(String identifier) {
 		super("REQ-IF");
 		theHeader = new ReqIFHeader(identifier);
 		coreContent = new ReqIFContent();
+		toolExtension = new ReqIFToolExtension();
 	}
 	
 
@@ -30,10 +32,9 @@ class ReqIF extends ReqIFElement {
 
 	@Override
 	protected void handleElement(Element e) {
-		if (e.getNodeName().equals("THE-HEADER"))
-			theHeader.fromXml(e);
-		if (e.getNodeName().equals("CORE-CONTENT"))
-			coreContent.fromXml(e);
+		if (e.getNodeName().equals("THE-HEADER"))      theHeader.fromXml(e);
+		if (e.getNodeName().equals("CORE-CONTENT"))    coreContent.fromXml(e);
+		if (e.getNodeName().equals("TOOL-EXTENSIONS")) toolExtension.fromXml(e);
 	}
 	
 }
