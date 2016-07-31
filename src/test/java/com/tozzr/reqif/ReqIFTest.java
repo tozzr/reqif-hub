@@ -13,7 +13,7 @@ public class ReqIFTest {
 		String expected = 
 			"<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
 		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
-		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
+		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
 		  + "xml:lang=\"en\">\n"
 		  + reqIF.theHeader.toXml(2)
 		  + reqIF.coreContent.toXml(2)

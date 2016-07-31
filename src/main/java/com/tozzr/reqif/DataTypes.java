@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 
 class DataTypes extends ReqIFElement {
 
-	private List<DatatypeDefinition> types = new ArrayList<DatatypeDefinition>();
+	List<DatatypeDefinition> types = new ArrayList<DatatypeDefinition>();
 	
 	protected DataTypes() {
 		super("DATATYPES");
@@ -18,12 +18,17 @@ class DataTypes extends ReqIFElement {
 	}
 	
 	@Override
-	public String toXml(int ident) {
-		String identStr = "";
-		for (int i=0; i<ident; i++)
-			identStr += " ";
-		String elemStr = elementsToXml(ident);
-		return String.format("%s<DATATYPES>\n%s%s</DATATYPES>\n", identStr, elemStr, identStr);
+	public String toXml(int indent) {
+		String elemStr = "";
+		for (DatatypeDefinition d : types)
+			elemStr += d.toXml(indent+2);
+		return String.format(
+			"%s<DATATYPES>\n"
+		  + "%s"
+		  + "%s</DATATYPES>\n", 
+		  getIndentStr(indent), 
+		  elemStr, 
+		  getIndentStr(indent));
 	}
 	
 	protected void handleElement(Element e) {

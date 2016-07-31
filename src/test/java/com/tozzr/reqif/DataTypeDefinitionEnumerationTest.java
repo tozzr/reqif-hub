@@ -1,7 +1,6 @@
 package com.tozzr.reqif;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class DataTypeDefinitionEnumerationTest {
 		  + ">\n"
 		  + new SpecifiedValues().toXml(2)
 		  + "</DATATYPE-DEFINITION-ENUMERATION>\n";
-		assertThat(sut.toXml(0), equalTo(expected));
+		assertEquals(expected, sut.toXml(0));
 	}
 	
 }

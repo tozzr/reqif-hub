@@ -8,8 +8,10 @@ public class SpecObjectType extends SpecType {
 		super("SPEC-OBJECT-TYPE");
 	}
 
-	@Override
-	protected void handleElement(Element e) {
+	static SpecType fromElement(Element e) {
+		SpecObjectType t = new SpecObjectType();
+		t.handleElement(e);
+		return t;
 	}
-
+	
 }

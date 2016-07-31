@@ -1,6 +1,9 @@
 package com.tozzr.reqif;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,6 +18,7 @@ public abstract class ReqIFElement {
 	private String payload;
 	private List<ReqIFElement> elements;
 	private Map<String, String> attributes;
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 	
 	protected ReqIFElement(final String name) {
 		this(name, "");
@@ -31,24 +35,16 @@ public abstract class ReqIFElement {
 		return name;
 	}
 	
-	protected void addElement(ReqIFElement element) {
-		this.elements.add(element);
-	}
-	
-	protected ReqIFElement getElement(int index) {
-		return elements.get(index);
-	}
-	
 	protected void addAttribute(String name, String value) {
 		this.attributes.put(name, value);
 	}
 	
-	public String toXml(int ident) {
-		String identStr = getIndentStr(ident);
+	public String toXml(int indent) {
+		String identStr = getIndentStr(indent);
 		String attrStr = "";
 		for (String n : attributes.keySet())
 			attrStr += String.format(" %s=\"%s\"", n, attributes.get(n));
-		String elemStr = elementsToXml(ident);
+		String elemStr = elementsToXml(indent);
 		return String.format(
 			"%s<%s%s>\n%s%s%s</%s>\n", 
 			identStr, 
@@ -61,11 +57,11 @@ public abstract class ReqIFElement {
 		);
 	}
 
-	protected String getIndentStr(int ident) {
-		String identStr = "";
-		for (int i=0; i < ident; i++)
-			identStr += " ";
-		return identStr;
+	protected String getIndentStr(int indent) {
+		String indentStr = "";
+		for (int i=0; i < indent; i++)
+			indentStr += " ";
+		return indentStr;
 	}
 	
 	protected String elementsToXml(int ident) {
@@ -88,5 +84,13 @@ public abstract class ReqIFElement {
 	}
 	
 	abstract protected void handleElement(Element e);
+
+	public static String format(Date date) {
+		return sdf.format(date);
+	}
+	
+	public static Date parse(String dateStr) throws ParseException {
+		return sdf.parse(dateStr);
+	}
 	
 }

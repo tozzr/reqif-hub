@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:configuration="http://eclipse.org/rmf/pror/toolextensions/1.0" xmlns:id="http://pror.org/presentation/id" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd" xml:lang="en">
   <THE-HEADER>
     <REQ-IF-HEADER IDENTIFIER="rmf-94fa9e02-2503-40a5-a129-3bf79216c65f">
       <COMMENT>Created by: tozzr.com</COMMENT>
@@ -171,37 +172,6 @@
   </CORE-CONTENT>
   <TOOL-EXTENSIONS>
     <REQ-IF-TOOL-EXTENSION>
-      <configuration:ProrToolExtension>
-        <configuration:specViewConfigurations>
-          <configuration:ProrSpecViewConfiguration specification="_oUM62EpHEeaRVZ-0WBHB9A">
-            <configuration:columns>
-              <configuration:Column label="ReqIF.ForeignID" width="100"/>
-              <configuration:UnifiedColumn label="Main" width="100"/>
-            </configuration:columns>
-            <configuration:leftHeaderColumn>
-              <configuration:Column label="Lead Header Column" width="30"/>
-            </configuration:leftHeaderColumn>
-          </configuration:ProrSpecViewConfiguration>
-        </configuration:specViewConfigurations>
-        <configuration:generalConfiguration>
-          <configuration:ProrGeneralConfiguration>
-            <configuration:labelConfiguration>
-              <configuration:LabelConfiguration>
-                <defaultLabel>ReqIF.Description</defaultLabel>
-                <defaultLabel>ReqIF.ForeignID</defaultLabel>
-              </configuration:LabelConfiguration>
-            </configuration:labelConfiguration>
-          </configuration:ProrGeneralConfiguration>
-        </configuration:generalConfiguration>
-        <configuration:presentationConfigurations>
-          <configuration:ProrPresentationConfigurations>
-            <configuration:presentationConfigurations>
-              <id:IdConfiguration datatype="_oUMTxEpHEeaRVZ-0WBHB9A" prefix="REQ-" count="4"/>
-              <id:IdConfiguration datatype="_oUMTyUpHEeaRVZ-0WBHB9A" prefix="LNK-" count="1"/>
-            </configuration:presentationConfigurations>
-          </configuration:ProrPresentationConfigurations>
-        </configuration:presentationConfigurations>
-      </configuration:ProrToolExtension>
     </REQ-IF-TOOL-EXTENSION>
   </TOOL-EXTENSIONS>
 </REQ-IF>

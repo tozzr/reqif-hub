@@ -26,9 +26,9 @@ class ReqIFHeader extends ReqIFElement {
 	public String toXml(int ident) {
 		return 
 			"  <THE-HEADER>\n"
-			  + "    <REQ-IF-HEADER IDENTIFIER=\"myId\">\n"
+			  + "    <REQ-IF-HEADER IDENTIFIER=\"" + identifier + "\">\n"
 			  + "      <COMMENT>" + comment + "</COMMENT>\n"
-			  + "      <CREATION-TIME>" + creationTime + "</CREATION-TIME>\n"
+			  + "      <CREATION-TIME>" + ReqIFElement.format(creationTime) + "</CREATION-TIME>\n"
 			  + "      <REQ-IF-TOOL-ID>" + reqIFToolId + "</REQ-IF-TOOL-ID>\n"
 			  + "      <REQ-IF-VERSION>" + reqIFVersion + "</REQ-IF-VERSION>\n"
 			  + "      <SOURCE-TOOL-ID>" + sourceToolId  + "</SOURCE-TOOL-ID>\n"

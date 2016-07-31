@@ -18,9 +18,23 @@ class SpecTypes extends ReqIFElement {
 	}
 
 	@Override
+	public String toXml(int indent) {
+		String elemStr = "";
+		for (SpecType t : types)
+			elemStr += t.toXml(indent+2);
+		return String.format(
+			"%s<SPEC-TYPES>\n"
+		  + "%s"
+		  + "%s</SPEC-TYPES>\n", 
+		  getIndentStr(indent), 
+		  elemStr, 
+		  getIndentStr(indent));
+	}
+	
+	@Override
 	protected void handleElement(Element e) {
 		if (e.getNodeName().equals("SPEC-OBJECT-TYPE"))
-			types.add((SpecObjectType) new SpecObjectType().fromXml(e));
+			types.add(SpecObjectType.fromElement(e));
 		if (e.getNodeName().equals("SPECIFICATION-TYPE"))
 			types.add((SpecificationType) new SpecificationType().fromXml(e));
 		if (e.getNodeName().equals("SPEC-RELATION-TYPE"))

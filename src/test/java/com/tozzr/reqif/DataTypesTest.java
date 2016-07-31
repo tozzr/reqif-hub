@@ -15,7 +15,7 @@ public class DataTypesTest {
 	@Test
 	public void canHaveDataTypeDefinitionString() throws Exception {
 		DataTypes dataTypes = new DataTypes();
-		dataTypes.addElement(new DatatypeDefinitionString("ID", 1000));
+		dataTypes.types.add(new DatatypeDefinitionString("ID", 1000));
 		String expected = 
 			"<DATATYPES>\n"
 		  + new DatatypeDefinitionString("ID", 1000).toXml(2)
@@ -26,7 +26,7 @@ public class DataTypesTest {
 	@Test
 	public void canHaveDataTypeDefinitionEnumeration() throws Exception {
 		DataTypes dataTypes = new DataTypes();
-		dataTypes.addElement(new DataTypeDefinitionEnumeration("ID", "last-change"));
+		dataTypes.types.add(new DataTypeDefinitionEnumeration("ID", "last-change"));
 		String expected = 
 			"<DATATYPES>\n"
 		  + new DataTypeDefinitionEnumeration("ID", "last-change").toXml(2)
