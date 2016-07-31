@@ -8,8 +8,10 @@ public class SpecificationType extends SpecType {
 		super("SPECIFICATION-TYPE");
 	}
 
-	@Override
-	protected void handleElement(Element e) {
+	static SpecificationType fromElement(Element e) {
+		SpecificationType t = new SpecificationType();
+		t.handleElement(e);
+		return t;
 	}
 
 }

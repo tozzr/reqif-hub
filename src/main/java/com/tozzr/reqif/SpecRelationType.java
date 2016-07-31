@@ -8,8 +8,10 @@ public class SpecRelationType extends SpecType {
 		super("SPEC-RELATION-TYPE");
 	}
 
-	@Override
-	protected void handleElement(Element e) {
+	static SpecRelationType fromElement(Element e) {
+		SpecRelationType t = new SpecRelationType();
+		t.handleElement(e);
+		return t;
 	}
 
 }

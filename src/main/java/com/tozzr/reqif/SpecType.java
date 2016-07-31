@@ -44,6 +44,14 @@ public abstract class SpecType extends Identifiable {
 			super.handleElement(e);
 			fromXml(e);
 		}
+		if (e.getNodeName().equals("SPECIFICATION-TYPE")) {
+			super.handleElement(e);
+			fromXml(e);
+		}
+		if (e.getNodeName().equals("SPEC-RELATION-TYPE")) {
+			super.handleElement(e);
+			fromXml(e);
+		}
 		if (e.getNodeName().equals("SPEC-ATTRIBUTES"))
 			fromXml(e);
 		if (e.getNodeName().equals("ATTRIBUTE-DEFINITION-STRING"))

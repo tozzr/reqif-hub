@@ -18,9 +18,24 @@ class SpecObjects extends ReqIFElement {
 	}
 	
 	@Override
+	public String toXml(int indent) {
+		String elemStr = "";
+		for (SpecObject o : objects)
+			elemStr += o.toXml(indent+2);
+		return String.format(
+			"%s<SPEC-OBJECTS>\n"
+		  + "%s"
+		  + "%s</SPEC-OBJECTS>\n",
+		  	getIndentStr(indent),
+		  	elemStr,
+		  	getIndentStr(indent)
+		);
+	}
+	
+	@Override
 	protected void handleElement(Element e) {
 		if (e.getNodeName().equals("SPEC-OBJECT"))
-			objects.add((SpecObject) new SpecObject().fromXml(e));
+			objects.add(SpecObject.fromElement(e));
 	}
 	
 }

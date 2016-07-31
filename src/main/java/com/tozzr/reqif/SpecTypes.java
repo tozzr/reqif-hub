@@ -36,9 +36,9 @@ class SpecTypes extends ReqIFElement {
 		if (e.getNodeName().equals("SPEC-OBJECT-TYPE"))
 			types.add(SpecObjectType.fromElement(e));
 		if (e.getNodeName().equals("SPECIFICATION-TYPE"))
-			types.add((SpecificationType) new SpecificationType().fromXml(e));
+			types.add(SpecificationType.fromElement(e));
 		if (e.getNodeName().equals("SPEC-RELATION-TYPE"))
-			types.add((SpecRelationType) new SpecRelationType().fromXml(e));
+			types.add(SpecRelationType.fromElement(e));
 	}
 	
 }
