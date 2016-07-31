@@ -2,16 +2,16 @@ package com.tozzr.reqif;
 
 import org.w3c.dom.Element;
 
-public class AttributeDefinitionString extends AttributeDefinition {
+public class AttributeDefinitionXHTML extends AttributeDefinition {
 
 	public String ref;
 	
-	protected AttributeDefinitionString() {
-		super("STRING");
+	protected AttributeDefinitionXHTML() {
+		super("XHTML");
 	}
 
 	public static AttributeDefinition fromElement(Element e) {
-		AttributeDefinitionString s = new AttributeDefinitionString();
+		AttributeDefinitionXHTML s = new AttributeDefinitionXHTML();
 		s.handleElement(e);
 		s.ref = e.getTextContent().trim();
 		return s;
@@ -20,11 +20,11 @@ public class AttributeDefinitionString extends AttributeDefinition {
 	@Override
 	public String toXml(int indent) {
 		return String.format(
-			"%s<ATTRIBUTE-DEFINITION-STRING IDENTIFIER=\"%s\" LAST-CHANGE=\"%s\" LONG-NAME=\"%s\">\n"
+			"%s<ATTRIBUTE-DEFINITION-XHTML IDENTIFIER=\"%s\" LAST-CHANGE=\"%s\" LONG-NAME=\"%s\">\n"
 		  + "%s<TYPE>\n"
-		  + "%s<DATATYPE-DEFINITION-STRING-REF>%s</DATATYPE-DEFINITION-STRING-REF>\n"
+		  + "%s<DATATYPE-DEFINITION-XHTML-REF>%s</DATATYPE-DEFINITION-XHTML-REF>\n"
 		  + "%s</TYPE>\n"
-		  + "%s</ATTRIBUTE-DEFINITION-STRING>\n", 
+		  + "%s</ATTRIBUTE-DEFINITION-XHTML>\n", 
 		  getIndentStr(indent),
 		  identifier,
 		  lastChange,

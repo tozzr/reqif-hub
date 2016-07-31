@@ -48,6 +48,8 @@ public abstract class SpecType extends Identifiable {
 			fromXml(e);
 		if (e.getNodeName().equals("ATTRIBUTE-DEFINITION-STRING"))
 			specAttributes.add(AttributeDefinitionString.fromElement(e));
+		if (e.getNodeName().equals("ATTRIBUTE-DEFINITION-XHTML"))
+			specAttributes.add(AttributeDefinitionXHTML.fromElement(e));
 	}
 	
 }
