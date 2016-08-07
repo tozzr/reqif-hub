@@ -18,9 +18,24 @@ class Specifications extends ReqIFElement {
 	}
 	
 	@Override
+	public String toXml(int indent) {
+		String elemStr = "";
+		for (Specification s: specifications)
+			elemStr += s.toXml(indent+2);
+		return String.format(
+			"%s<SPECIFICATIONS>\n"
+		  + "%s"
+		  + "%s</SPECIFICATIONS>\n",
+			getIndentStr(indent),
+			elemStr,
+			getIndentStr(indent)
+		);
+	}
+	
+	@Override
 	protected void handleElement(Element e) {
 		if (e.getNodeName().equals("SPECIFICATION"))
-			specifications.add((Specification) new Specification().fromXml(e));
+			specifications.add(Specification.fromElement(e));
 	}
 	
 }

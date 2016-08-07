@@ -18,6 +18,21 @@ class SpecRelations extends ReqIFElement {
 	}
 	
 	@Override
+	public String toXml(int indent) {
+		String elemStr = "";
+		for (SpecRelation r : relations)
+			elemStr += r.toXml(indent+2);
+		return String.format(
+			"%s<SPEC-RELATIONS>\n"
+		  + "%s"
+		  + "%s</SPEC-RELATIONS>\n",
+			getIndentStr(indent),
+			elemStr,
+			getIndentStr(indent)
+		);
+	}
+	
+	@Override
 	protected void handleElement(Element e) {
 		if (e.getNodeName().equals("SPEC-RELATION"))
 			relations.add((SpecRelation) new SpecRelation().fromXml(e));

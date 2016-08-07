@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ReqIFIntegrationTest {
@@ -24,5 +25,13 @@ public class ReqIFIntegrationTest {
 		String content = scanner.useDelimiter("\\Z").next();
 		scanner.close();
 		return content;
+	}
+	
+	@Test
+	@Ignore
+	public void parseXml() throws Exception {
+		ReqIFReader reader = new ReqIFReader();
+		String inputFilename = "src/test/resources/Test.reqif";
+		reader.parse(inputFilename);
 	}
 }

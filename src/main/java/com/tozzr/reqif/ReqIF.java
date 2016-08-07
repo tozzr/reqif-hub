@@ -27,7 +27,11 @@ class ReqIF extends ReqIFElement {
 		    "<REQ-IF xmlns=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
 		  + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
 		  + "xsi:schemaLocation=\"http://www.omg.org/spec/ReqIF/20110401/reqif.xsd\" "
-		  + "xml:lang=\"en\">\n" + theHeader.toXml(2) + coreContent.toXml(2) + "</REQ-IF>";
+		  + "xml:lang=\"en\">\n"
+		  + theHeader.toXml(2)
+		  + coreContent.toXml(2)
+		  + toolExtension.toXml(2)
+		  + "</REQ-IF>";
 	}
 
 	@Override

@@ -17,6 +17,7 @@ public class ReqIFTest {
 		  + "xml:lang=\"en\">\n"
 		  + reqIF.theHeader.toXml(2)
 		  + reqIF.coreContent.toXml(2)
+		  + reqIF.toolExtension.toXml(2)
 		  + "</REQ-IF>";
 		assertEquals(expected, reqIF.toXml(0));
 	}
