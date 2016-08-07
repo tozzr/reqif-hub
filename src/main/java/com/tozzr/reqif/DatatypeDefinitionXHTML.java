@@ -11,7 +11,7 @@ class DatatypeDefinitionXHTML extends Identifiable implements DatatypeDefinition
 	}
 	
 	private DatatypeDefinitionXHTML() {
-		super("DATATYPE-DEFINITION-XHTML");
+		super("DATATYPE-DEFINITION-XHTML", true);
 	}
 	
 	public String getType() {

@@ -24,7 +24,7 @@ public class ReqIFTest {
 	
 	@Test
 	public void hasHeader() throws Exception {
-		assertThat(new ReqIF("myId").theHeader.toXml(1), equalTo(new ReqIFHeader("myId").toXml(1)));
+		assertEquals(new ReqIFHeader("myId").toXml(1), new ReqIF("myId").theHeader.toXml(1));
 	}
 	
 	@Test

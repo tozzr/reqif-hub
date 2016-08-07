@@ -8,24 +8,20 @@ public abstract class Identifiable extends ReqIFElement {
 	public String lastChange;
 	public String longName;
 	
-	protected Identifiable(String name) {
+	protected Identifiable(final String name) {
 		super(name);
 	}
-	@Override
-	public String toXml(int indent) {
-		return String.format(
-			"%s<%s IDENTIFIER=\"%s\" LAST-CHANGE=\"%s\" LONG-NAME=\"%s\"%s/>\n",
-			getIndentStr(indent),
-			getName(),
-			identifier,
-			lastChange,
-			longName,
-			getExtraAttributesToXml()
-		);
+	
+	protected Identifiable(final String name, final boolean selfClosing) {
+		super(name, selfClosing);
 	}
 	
-	protected String getExtraAttributesToXml() {
-		return "";
+	@Override
+	public String toXml(int indent) {
+		setAttribute("IDENTIFIER", identifier);
+		setAttribute("LAST-CHANGE", lastChange);
+		setAttribute("LONG-NAME", longName);
+		return super.toXml(indent);
 	}
 	
 	@Override

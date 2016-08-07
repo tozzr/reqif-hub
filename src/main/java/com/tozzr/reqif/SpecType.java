@@ -19,7 +19,7 @@ public abstract class SpecType extends Identifiable {
 		for (AttributeDefinition a : specAttributes)
 			elemStr += a.toXml(indent+4);
 		return String.format(
-			"%s<%s IDENTIFIER=\"%s\" LAST-CHANGE=\"%s\" LONG-NAME=\"%s\"%s>\n"
+			"%s<%s IDENTIFIER=\"%s\" LAST-CHANGE=\"%s\" LONG-NAME=\"%s\">\n"
 		  + "%s<SPEC-ATTRIBUTES>\n"
 		  + "%s"
 		  + "%s</SPEC-ATTRIBUTES>\n"
@@ -29,7 +29,7 @@ public abstract class SpecType extends Identifiable {
 			identifier,
 			lastChange,
 			longName,
-			getExtraAttributesToXml(),
+//			getExtraAttributesToXml(),
 			getIndentStr(indent+2),
 			elemStr,
 			getIndentStr(indent+2),

@@ -15,18 +15,18 @@ import org.w3c.dom.NodeList;
 public abstract class ReqIFElement {
 
 	private String name;
-	private String payload;
 	private List<ReqIFElement> elements;
 	private Map<String, String> attributes;
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+	private boolean selfClosing = false;
 	
-	protected ReqIFElement(final String name) {
-		this(name, "");
+	protected ReqIFElement(final String name, final boolean selfClosing) {
+		this(name);
+		this.selfClosing = selfClosing;
 	}
 	
-	protected ReqIFElement(final String name, final String payload) {
+	protected ReqIFElement(final String name) {
 		this.name = name;
-		this.payload = payload;
 		this.elements = new ArrayList<ReqIFElement>();
 		this.attributes = new TreeMap<String, String>();
 	}
@@ -35,7 +35,7 @@ public abstract class ReqIFElement {
 		return name;
 	}
 	
-	protected void addAttribute(String name, String value) {
+	protected void setAttribute(String name, String value) {
 		this.attributes.put(name, value);
 	}
 	
@@ -45,16 +45,23 @@ public abstract class ReqIFElement {
 		for (String n : attributes.keySet())
 			attrStr += String.format(" %s=\"%s\"", n, attributes.get(n));
 		String elemStr = elementsToXml(indent);
-		return String.format(
-			"%s<%s%s>\n%s%s%s</%s>\n", 
-			identStr, 
-			name, 
-			attrStr, 
-			payload,
-			elemStr,
-			identStr,
-			name
-		);
+		if (selfClosing)
+			return String.format(
+				"%s<%s%s/>\n",
+				identStr,
+				name,
+				attrStr
+			);
+		else
+			return String.format(
+				"%s<%s%s>\n%s%s</%s>\n", 
+				identStr, 
+				name, 
+				attrStr, 
+				elemStr,
+				identStr,
+				name
+			);
 	}
 
 	protected String getIndentStr(int indent) {

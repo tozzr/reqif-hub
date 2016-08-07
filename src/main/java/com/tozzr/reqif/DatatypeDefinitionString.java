@@ -19,7 +19,7 @@ class DatatypeDefinitionString extends Identifiable implements DatatypeDefinitio
 	}
 	
 	private DatatypeDefinitionString() {
-		super("DATATYPE-DEFINITION-STRING");
+		super("DATATYPE-DEFINITION-STRING", true);
 	}
 
 	public String getType() {
@@ -33,8 +33,9 @@ class DatatypeDefinitionString extends Identifiable implements DatatypeDefinitio
 	}
 
 	@Override
-	protected String getExtraAttributesToXml() {
-		return String.format(" MAX-LENGTH=\"%s\"", maxLength);
+	public String toXml(int indent) {
+		setAttribute("MAX-LENGTH", ""+maxLength);
+		return super.toXml(indent);
 	}
 	
 	@Override
