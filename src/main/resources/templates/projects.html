@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>index page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+    <table class="hover">
+	  <thead>
+	    <tr>
+	      <th width="100">ID</th>
+	      <th>Bezeichnung</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="p : ${projects}">
+	    	<td><a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.key}">key</a></td>
+	    	<td th:text="${p.name}">name</td>
+	    </tr>
+	  </tbody>
+	  <tfoot>
+	  	<tr>
+	  		<td colspan="2">
+				<ul class="pagination" role="navigation" aria-label="Pagination">
+				  <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
+				  <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+				  <li><a href="#" aria-label="Page 2">2</a></li>
+				  <li><a href="#" aria-label="Page 3">3</a></li>
+				  <li><a href="#" aria-label="Page 4">4</a></li>
+				  <li class="ellipsis" aria-hidden="true"></li>
+				  <li><a href="#" aria-label="Page 12">12</a></li>
+				  <li><a href="#" aria-label="Page 13">13</a></li>
+				  <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+				</ul>
+	  		</td>
+	  	</tr>
+	  </tfoot>
+	</table>
+</body>
+</html>

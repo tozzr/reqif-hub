@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>index page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+	<h3 th:text="${project.name} + ' (' + ${project.key} + ')'">project name</h3>
+    <table class="hover">
+	  <thead>
+	    <tr>
+	      <th width="100">ID</th>
+	      <th>Text</th>
+	      <th width="300">Beispiel</th>
+	      <th width="150">Gravität</th>
+	      <th>Links</th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<tr th:each="spec : ${project.specs}">
+	      <td><a th:href="@{/projects/{id}/specs/{specId}(id=${project.id},specId=${spec.id})}" th:text="#{${spec.type} + '_' + ${spec.id}}">key</a></td>
+	      <td th:text="${spec.text}">text</td>
+	      <td th:text="${spec.examples}">examples</td>
+	      <td>muss</td>
+	      <td th:text="${spec.next}">Links</td>
+	      <th>
+	        <form th:action="@{/projects/{id}/specs/{specId}(id=${project.id},specId=${spec.id})}" method="post">
+	          <input type="hidden" name="_method" value="DELETE" />
+	          <button type="submit">delete</button>
+	        </form>
+	      </th>
+	    </tr>
+	  </tbody>
+	  <tfoot>
+	  	<tr>
+	  		<td colspan="3">
+				<ul class="pagination" role="navigation" aria-label="Pagination">
+				  <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
+				  <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+				  <li><a href="#" aria-label="Page 2">2</a></li>
+				  <li><a href="#" aria-label="Page 3">3</a></li>
+				  <li><a href="#" aria-label="Page 4">4</a></li>
+				  <li class="ellipsis" aria-hidden="true"></li>
+				  <li><a href="#" aria-label="Page 12">12</a></li>
+				  <li><a href="#" aria-label="Page 13">13</a></li>
+				  <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+				</ul>
+	  		</td>
+	  	</tr>
+	  </tfoot>
+	</table>
+	<a th:href="@{/projects/{id}/specs/form(id=${project.id})}">new spec</a>
+</body>
+</html>

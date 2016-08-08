@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div th:fragment="header" class="top-bar">
+	  <div class="top-bar-left">
+	    <ul class="dropdown menu" data-dropdown-menu="">
+	      <li class="menu-text">rapid REQ</li>
+	      <li>
+	        <a th:href="@{/projects}">Projekte</a>
+	        <ul class="menu vertical">
+	          <li th:each="p : ${projects}">
+	          	<a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.key} + ' - ' + ${p.name}">Projektname</a>
+	          </li>
+	        </ul>
+	      </li>
+	    </ul>
+	  </div>
+	  <div class="top-bar-right">
+	    <ul class="menu">
+	      <li><input type="search" placeholder="Search" /></li>
+	      <li><button type="button" class="button">Search</button></li>
+	    </ul>
+	  </div>
+	</div>
+</body>
+</html>

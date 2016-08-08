@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>Foundation for Sites</title>
+    <link rel="stylesheet" th:href="@{/css/foundation.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/app.css}"></link>
+  </head>
+  <body>
+  	<div th:replace="fragments/header :: header">header goes here?</div>
+  	<div layout:fragment="content">content goes here</div>
+  	<div th:include="fragments/footer :: footer">footer goes here</div>
+
+    <script th:src="@{/js/vendor/jquery.js}"></script>
+    <script th:src="@{/js/vendor/what-input.js}"></script>
+    <script th:src="@{/js/vendor/foundation.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+  </body>
+</html>
