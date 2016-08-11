@@ -2,22 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" 
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
-<head>
-    <title>index page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
 <body layout:fragment="content">
     <table class="hover">
 	  <thead>
 	    <tr>
-	      <th width="100">ID</th>
 	      <th>Bezeichnung</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr th:each="p : ${projects}">
-	    	<td><a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.key}">key</a></td>
-	    	<td th:text="${p.name}">name</td>
+	    	<td><a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.name}">name</a></td>
 	    </tr>
 	  </tbody>
 	  <tfoot>

@@ -1,15 +1,20 @@
 package com.tozzr.reqif.web;
 
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/projects")
@@ -18,11 +23,10 @@ public class ProjectController {
 	@Autowired
 	private ProjectRepository projectRepository;
 	
-	@Autowired
-	private SpecificationRepository specificationRepository;
+	public static final String ROOT = "upload-dir";
 	
 	@ModelAttribute("projects")
-	public Iterable<Project> populateProjects() {
+	public Iterable<Project> populateProjects() throws IOException {
 		return projectRepository.findAll();
 	}
 	
@@ -31,63 +35,31 @@ public class ProjectController {
         return "projects";
     }
 	
-    @RequestMapping(value="/{id}", method=GET)
-    public String project(@PathVariable("id") Long id, Model model) {
-    	Project project = projectRepository.findOne(id);
-		model.addAttribute("project", project);
-        return "project";
+	@RequestMapping(method=GET, value="/form")
+    public String projectForm() {
+        return "uploadForm";
     }
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/form")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+								   RedirectAttributes redirectAttributes) {
 
-    @RequestMapping(value="/{id}/specs/form", method=GET)
-    public String specsForm(@PathVariable("id") long id, Model model) {
-    	Project project = projectRepository.findOne(id);
-		model.addAttribute("project", project);
-    	model.addAttribute("spec", new Specification());
-        return "spec";
-    }
-    
-    @RequestMapping(value="/{id}/specs/form", method=POST)
-    public String createSpec(@PathVariable("id") long id, Specification spec, Model model) {
-		Project project = projectRepository.findOne(id);
-		Specification s = new Specification(spec.getType(), project);
-		s.setText(spec.getText());
-		s.setType(SpecificationType.CRS);
-		specificationRepository.save(s);
-		return "redirect:/projects/" + id;
-    }
-    
-    @RequestMapping(value="/{id}/specs/{specId}", method=GET)
-    public String specs(@PathVariable("id") long id, @PathVariable("specId") long specId, Model model) {
-    	Project project = projectRepository.findOne(id);
-		model.addAttribute("project", project);
-    	model.addAttribute("spec", findSpec(project, specId));
-        return "spec";
-    }
+		int MAX_FILE_SIZE = 15 * 1024 * 1024;
 
-	private Specification findSpec(Project project, long id) {
-		for (Specification s : project.getSpecs())
-			if (s.getId() == id)
-				return s;
-		return null;
+		if (file.isEmpty()){
+			redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
+		} else if (file.getSize() >= MAX_FILE_SIZE) {
+			redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was too big");
+		} else {
+			try {
+				Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+				redirectAttributes.addFlashAttribute("message",
+						"You successfully uploaded " + file.getOriginalFilename() + "!");
+			} catch (IOException|RuntimeException e) {
+				redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+			}
+		}
+
+		return "redirect:/projects/form";
 	}
-	
-	@RequestMapping(value="/{id}/specs/{specId}", method=POST)
-    public String updateSpec(@PathVariable("id") long id, @PathVariable("specId") long specId, Specification spec, Model model) {
-		Project project = projectRepository.findOne(id);
-		Specification s = findSpec(project, specId);
-		s.setType(spec.getType());
-		s.setText(spec.getText());
-		projectRepository.save(project);
-		return "redirect:/projects/" + id;
-    }
-	
-	@RequestMapping(value="/{id}/specs/{specId}", method=DELETE)
-    public String deleteSpec(@PathVariable("id") long id, @PathVariable("specId") long specId) {
-		Project project = projectRepository.findOne(id);
-		Specification s = findSpec(project, specId);
-		System.out.println("delete " + s);
-		project.getSpecs().remove(s);
-		projectRepository.save(project);
-		return "redirect:/projects/" + id;
-    }
 }

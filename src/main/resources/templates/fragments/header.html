@@ -6,12 +6,15 @@
 	<div th:fragment="header" class="top-bar">
 	  <div class="top-bar-left">
 	    <ul class="dropdown menu" data-dropdown-menu="">
-	      <li class="menu-text">rapid REQ</li>
+	      <li class="menu-text">ReqIF hub</li>
 	      <li>
 	        <a th:href="@{/projects}">Projekte</a>
 	        <ul class="menu vertical">
 	          <li th:each="p : ${projects}">
-	          	<a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.key} + ' - ' + ${p.name}">Projektname</a>
+	          	<a th:href="@{/projects/{id}(id=${p.id})}" th:text="${p.name}">Projektname</a>
+	          </li>
+	          <li>
+			    <a th:href="@{/projects/form}">neues Projekt</a>
 	          </li>
 	        </ul>
 	      </li>
