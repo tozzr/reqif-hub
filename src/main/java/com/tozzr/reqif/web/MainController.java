@@ -1,5 +1,7 @@
 package com.tozzr.reqif.web;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,7 @@ public class MainController {
 	private ProjectRepository projectRepository;
 	
 	@ModelAttribute("projects")
-	public Iterable<Project> populateProjects() {
+	public Iterable<Project> populateProjects() throws IOException {
 		return projectRepository.findAll();
 	}
 	

@@ -3,17 +3,16 @@ package com.tozzr.reqif.web;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -22,8 +21,6 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectRepository projectRepository;
-	
-	public static final String ROOT = "upload-dir";
 	
 	@ModelAttribute("projects")
 	public Iterable<Project> populateProjects() throws IOException {
@@ -52,7 +49,7 @@ public class ProjectController {
 			redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was too big");
 		} else {
 			try {
-				Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+				projectRepository.save(file);
 				redirectAttributes.addFlashAttribute("message",
 						"You successfully uploaded " + file.getOriginalFilename() + "!");
 			} catch (IOException|RuntimeException e) {
@@ -62,4 +59,11 @@ public class ProjectController {
 
 		return "redirect:/projects/form";
 	}
+	
+	@RequestMapping(method=GET, value="/{id}")
+    public ModelAndView getProjectForm(@PathVariable("id") String id) throws IOException {
+		ModelAndView mav = new ModelAndView("project");
+		mav.addObject("project", projectRepository.find(id));
+		return mav;
+    }
 }
