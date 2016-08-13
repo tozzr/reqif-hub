@@ -3,13 +3,8 @@ package com.tozzr.reqif.domain;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import java.text.SimpleDateFormat;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import com.tozzr.reqif.domain.ReqIF;
-import com.tozzr.reqif.domain.ReqIFReader;
 
 public class ReqIFReaderTest {
 
@@ -25,7 +20,7 @@ public class ReqIFReaderTest {
 	@Test
 	public void read_header() throws Exception {
 		assertThat(reqIF.theHeader.comment, equalTo("Created by: tozzr.com"));
-		assertThat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(reqIF.theHeader.creationTime), equalTo("2016-07-15T06:50:18.224+02:00"));
+		assertThat(reqIF.theHeader.creationTime, equalTo("2016-07-15T06:50:18.224+02:00"));
 		assertThat(reqIF.theHeader.identifier, equalTo("rmf-94fa9e02-2503-40a5-a129-3bf79216c65f"));
 		assertThat(reqIF.theHeader.reqIFToolId, equalTo("fmStudio (http://formalmind.com/studio)"));
 		assertThat(reqIF.theHeader.reqIFVersion, equalTo("1.0"));

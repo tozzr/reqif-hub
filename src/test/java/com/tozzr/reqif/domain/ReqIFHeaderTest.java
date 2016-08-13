@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.tozzr.reqif.domain.ReqIFElement;
-import com.tozzr.reqif.domain.ReqIFHeader;
-
 public class ReqIFHeaderTest {
 
 	@Test
@@ -16,7 +13,7 @@ public class ReqIFHeaderTest {
 			"  <THE-HEADER>\n"
 		  + "    <REQ-IF-HEADER IDENTIFIER=\"myId\">\n"
 		  + "      <COMMENT>" + reqIFHeader.comment + "</COMMENT>\n"
-		  + "      <CREATION-TIME>" + ReqIFElement.format(reqIFHeader.creationTime) + "</CREATION-TIME>\n"
+		  + "      <CREATION-TIME>" + reqIFHeader.creationTime + "</CREATION-TIME>\n"
 		  + "      <REQ-IF-TOOL-ID>" + reqIFHeader.reqIFToolId + "</REQ-IF-TOOL-ID>\n"
 		  + "      <REQ-IF-VERSION>" + reqIFHeader.reqIFVersion + "</REQ-IF-VERSION>\n"
 		  + "      <SOURCE-TOOL-ID>" + reqIFHeader.sourceToolId  + "</SOURCE-TOOL-ID>\n"

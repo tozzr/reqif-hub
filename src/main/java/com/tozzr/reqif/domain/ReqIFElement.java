@@ -1,9 +1,6 @@
 package com.tozzr.reqif.domain;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +14,6 @@ public abstract class ReqIFElement {
 	private String name;
 	private List<ReqIFElement> elements;
 	private Map<String, String> attributes;
-	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 	private boolean selfClosing = false;
 	
 	protected ReqIFElement(final String name, final boolean selfClosing) {
@@ -92,12 +88,4 @@ public abstract class ReqIFElement {
 	
 	abstract protected void handleElement(Element e);
 
-	public static String format(Date date) {
-		return sdf.format(date);
-	}
-	
-	public static Date parse(String dateStr) throws ParseException {
-		return sdf.parse(dateStr);
-	}
-	
 }

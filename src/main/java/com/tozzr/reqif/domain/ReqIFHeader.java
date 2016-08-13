@@ -1,16 +1,11 @@
 package com.tozzr.reqif.domain;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
 
 class ReqIFHeader extends ReqIFElement {
 
 	public String comment = "";
-	public Date creationTime = new Date();
+	public String creationTime = "";
 	public String identifier = "";
 	public String repositoryId = "";
 	public String reqIFToolId = "";
@@ -28,7 +23,7 @@ class ReqIFHeader extends ReqIFElement {
 			"  <THE-HEADER>\n"
 			  + "    <REQ-IF-HEADER IDENTIFIER=\"" + identifier + "\">\n"
 			  + "      <COMMENT>" + comment + "</COMMENT>\n"
-			  + "      <CREATION-TIME>" + ReqIFElement.format(creationTime) + "</CREATION-TIME>\n"
+			  + "      <CREATION-TIME>" + creationTime + "</CREATION-TIME>\n"
 			  + "      <REQ-IF-TOOL-ID>" + reqIFToolId + "</REQ-IF-TOOL-ID>\n"
 			  + "      <REQ-IF-VERSION>" + reqIFVersion + "</REQ-IF-VERSION>\n"
 			  + "      <SOURCE-TOOL-ID>" + sourceToolId  + "</SOURCE-TOOL-ID>\n"
@@ -45,15 +40,8 @@ class ReqIFHeader extends ReqIFElement {
 		}
 		if (e.getNodeName() == "COMMENT")
 			comment = e.getTextContent();
-		if (e.getNodeName() == "CREATION-TIME") {
-			try {
-				creationTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(e.getTextContent());
-			} catch (DOMException e1) {
-				e1.printStackTrace();
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
-		}
+		if (e.getNodeName() == "CREATION-TIME")
+			creationTime = e.getTextContent();
 		if (e.getNodeName() == "REQ-IF-TOOL-ID")
 			reqIFToolId = e.getTextContent();
 		if (e.getNodeName() == "REQ-IF-VERSION")
